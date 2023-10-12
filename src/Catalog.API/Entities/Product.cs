@@ -5,6 +5,11 @@ namespace Catalog.API.Entities
 {
     public class Product
     {
+        public Product()
+        {
+            Id = ObjectId.GenerateNewId().ToString();
+        }
+
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)] // to convert string to ObjectId
         public string Id { get; set; }
