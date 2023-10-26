@@ -7,7 +7,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Contratcts\Features\**" />
+    <EmbeddedResource Remove="Contratcts\Features\**" />
+    <None Remove="Contratcts\Features\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Ordering.Domain\Ordering.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Behaviours\" />
+    <Folder Include="Features\" />
   </ItemGroup>
 
 </Project>
