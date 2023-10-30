@@ -8,14 +8,14 @@ using Ordering.Domain.Entities;
 
 namespace Ordering.Application.Features.Orders.Commands.CheckoutOrder
 {
-    public class UpdateOrderCommandHandler : IRequestHandler<UpdateOrderCommand, int>
+    public class CheckoutOrderCommandHandler : IRequestHandler<CheckoutOrderCommand, int>
     {
         private readonly IOrderRepository _orderRepository;
         private readonly IMapper _mapper;
         private readonly IEmailService _emailService;
-        private readonly ILogger<UpdateOrderCommandHandler> _logger;
+        private readonly ILogger<CheckoutOrderCommandHandler> _logger;
 
-        public UpdateOrderCommandHandler(IOrderRepository orderRepository, IMapper mapper, IEmailService emailService, ILogger<UpdateOrderCommandHandler> logger)
+        public CheckoutOrderCommandHandler(IOrderRepository orderRepository, IMapper mapper, IEmailService emailService, ILogger<CheckoutOrderCommandHandler> logger)
         {
             _orderRepository = orderRepository ?? throw new ArgumentNullException(nameof(orderRepository));
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
@@ -23,7 +23,7 @@ namespace Ordering.Application.Features.Orders.Commands.CheckoutOrder
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
-        public async Task<int> Handle(UpdateOrderCommand request, CancellationToken cancellationToken)
+        public async Task<int> Handle(CheckoutOrderCommand request, CancellationToken cancellationToken)
         {
             var orderEntity = _mapper.Map<Order>(request);
             var newOrder = await _orderRepository.AddAsync(orderEntity);

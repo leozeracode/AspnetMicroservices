@@ -7,20 +7,20 @@ using Ordering.Domain.Entities;
 
 namespace Ordering.Application.Features.Orders.Commands.UpdateOrder
 {
-    public class DeleteOrderCommandHandler : IRequestHandler<DeleteOrderCommand>
+    public class UpdateOrderCommandHandler : IRequestHandler<UpdateOrderCommand>
     {
         private readonly IOrderRepository _orderRepository;
         private readonly IMapper _mapper;
-        private readonly ILogger<DeleteOrderCommandHandler> _logger;
+        private readonly ILogger<UpdateOrderCommandHandler> _logger;
 
-        public DeleteOrderCommandHandler(IOrderRepository orderRepository, IMapper mapper, ILogger<DeleteOrderCommandHandler> logger)
+        public UpdateOrderCommandHandler(IOrderRepository orderRepository, IMapper mapper, ILogger<UpdateOrderCommandHandler> logger)
         {
             _orderRepository = orderRepository ?? throw new ArgumentNullException(nameof(orderRepository));
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
-        public async Task<Unit> Handle(DeleteOrderCommand request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(UpdateOrderCommand request, CancellationToken cancellationToken)
         {
             var orderToUpdate = await _orderRepository.GetByIdAsync(request.Id);
             if (orderToUpdate == null)
@@ -28,7 +28,7 @@ namespace Ordering.Application.Features.Orders.Commands.UpdateOrder
                 throw new NotFoundException(nameof(Order), request.Id);
             }
 
-            _mapper.Map(request, orderToUpdate, typeof(DeleteOrderCommand), typeof(Order));
+            _mapper.Map(request, orderToUpdate, typeof(UpdateOrderCommand), typeof(Order));
 
             await _orderRepository.UpdateAsync(orderToUpdate);
 
@@ -37,7 +37,7 @@ namespace Ordering.Application.Features.Orders.Commands.UpdateOrder
             return Unit.Value;
         }
 
-        Task IRequestHandler<DeleteOrderCommand>.Handle(DeleteOrderCommand request, CancellationToken cancellationToken)
+        Task IRequestHandler<UpdateOrderCommand>.Handle(UpdateOrderCommand request, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
