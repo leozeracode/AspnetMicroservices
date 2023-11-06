@@ -34,9 +34,16 @@ namespace Ordering.Application.Features.Orders.Commands.DeleteOrder
             return Unit.Value;
         }
 
-        Task IRequestHandler<DeleteOrderCommand>.Handle(DeleteOrderCommand request, CancellationToken cancellationToken)
+        async Task IRequestHandler<DeleteOrderCommand>.Handle(DeleteOrderCommand request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var orderToDelete = await _orderRepository.GetByIdAsync(request.Id);
+            if (orderToDelete == null)
+            {
+                throw new NotFoundException(nameof(Order), request.Id);
+            }
+
+            await _orderRepository.DeleteAsync(orderToDelete);
+            _logger.LogInformation($"Order {orderToDelete.Id} is successfully deleted.");
         }
     }
 }

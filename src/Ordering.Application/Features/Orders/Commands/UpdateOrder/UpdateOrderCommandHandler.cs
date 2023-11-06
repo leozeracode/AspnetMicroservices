@@ -37,9 +37,19 @@ namespace Ordering.Application.Features.Orders.Commands.UpdateOrder
             return Unit.Value;
         }
 
-        Task IRequestHandler<UpdateOrderCommand>.Handle(UpdateOrderCommand request, CancellationToken cancellationToken)
+        async Task IRequestHandler<UpdateOrderCommand>.Handle(UpdateOrderCommand request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var orderToUpdate = await _orderRepository.GetByIdAsync(request.Id);
+            if (orderToUpdate == null)
+            {
+                throw new NotFoundException(nameof(Order), request.Id);
+            }
+
+            _mapper.Map(request, orderToUpdate, typeof(UpdateOrderCommand), typeof(Order));
+
+            await _orderRepository.UpdateAsync(orderToUpdate);
+
+            _logger.LogInformation($"Order {orderToUpdate.Id} is successfully updated.");
         }
     }
 }
