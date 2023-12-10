@@ -3,7 +3,7 @@ using Ordering.Application.Contracts.Persistence;
 using Ordering.Domain.Entities;
 using Ordering.Infrastructure.Persistence;
 
-namespace Ordering.Infra.Repositories
+namespace Ordering.Infrastructure.Repositories
 {
     public class OrderRepository : RepositoryBase<Order>, IOrderRepository
     {

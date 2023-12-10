@@ -4,7 +4,7 @@ using Ordering.Domain.Common;
 using Ordering.Infrastructure.Persistence;
 using System.Linq.Expressions;
 
-namespace Ordering.Infra.Repositories
+namespace Ordering.Infrastructure.Repositories
 {
     public class RepositoryBase<T> : IAsyncRepository<T> where T : EntityBase
     {
