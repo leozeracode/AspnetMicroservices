@@ -1,9 +1,13 @@
 using Microsoft.OpenApi.Models;
+using Ordering.Application;
+using Ordering.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddApplicationServices();
+builder.Services.AddInfraServices(builder.Configuration);
 
 builder.Services.AddSwaggerGen(c =>
 {
