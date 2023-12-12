@@ -15,15 +15,79 @@ namespace Ordering.Infrastructure.Persistence
             }
         }
 
-        private static IEnumerable<Order> GetPreconfiguredOrders()
+        public static IEnumerable<Order> GetPreconfiguredOrders()
         {
             return new List<Order>
+        {
+            new Order
             {
-                new Order() {UserName = "swn", FirstName = "Mehmet", LastName = "Ozkaya", EmailAddress = "ezozkme@gmail.com", AddressLine = "Bahcelievler", Country = "Turkey", TotalPrice = 350 },
-                new Order() {UserName = "john_doe", FirstName = "John", LastName = "Doe", EmailAddress = "john.doe@example.com", AddressLine = "123 Main St", Country = "USA", TotalPrice = 500 },
-                new Order() {UserName = "maria_silva", FirstName = "Maria", LastName = "Silva", EmailAddress = "maria.silva@example.com", AddressLine = "Rua Principal, 456", Country = "Brazil", TotalPrice = 200 },
-                new Order() {UserName = "ali_khan", FirstName = "Ali", LastName = "Khan", EmailAddress = "ali.khan@example.com", AddressLine = "123 Khan Road", Country = "Pakistan", TotalPrice = 275 },
-            };
+                UserName = "alice_smith",
+                TotalPrice = 30.25m,
+                FirstName = "Alice",
+                LastName = "Smith",
+                EmailAddress = "alice.smith@example.com",
+                AddressLine = "789 Elm St",
+                Country = "USA",
+                State = "TX",
+                ZipCode = "56789",
+                CardName = "Alice Smith",
+                CardNumber = "5678-1234-9012-3456",
+                Expiration = "10/24",
+                CVV = "789",
+                PaymentMethod = 1
+            },
+            new Order
+            {
+                UserName = "bob_jones",
+                TotalPrice = 42.75m,
+                FirstName = "Bob",
+                LastName = "Jones",
+                EmailAddress = "bob.jones@example.com",
+                AddressLine = "101 Pine St",
+                Country = "USA",
+                State = "FL",
+                ZipCode = "34567",
+                CardName = "Bob Jones",
+                CardNumber = "8765-4321-0987-6543",
+                Expiration = "09/23",
+                CVV = "012",
+                PaymentMethod = 2
+            },
+            new Order
+            {
+                UserName = "emma_davis",
+                TotalPrice = 65.50m,
+                FirstName = "Emma",
+                LastName = "Davis",
+                EmailAddress = "emma.davis@example.com",
+                AddressLine = "202 Maple St",
+                Country = "USA",
+                State = "IL",
+                ZipCode = "45678",
+                CardName = "Emma Davis",
+                CardNumber = "4321-8765-2109-8765",
+                Expiration = "08/22",
+                CVV = "345",
+                PaymentMethod = 1
+            },
+            new Order
+            {
+                UserName = "charlie_wilson",
+                TotalPrice = 20.00m,
+                FirstName = "Charlie",
+                LastName = "Wilson",
+                EmailAddress = "charlie.wilson@example.com",
+                AddressLine = "303 Birch St",
+                Country = "USA",
+                State = "CA",
+                ZipCode = "23456",
+                CardName = "Charlie Wilson",
+                CardNumber = "9876-5432-1098-7654",
+                Expiration = "07/21",
+                CVV = "678",
+                PaymentMethod = 2
+            }
+        };
         }
     }
 }
