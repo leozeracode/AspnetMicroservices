@@ -15,6 +15,11 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddApplicationServices();
 builder.Services.AddInfrastructureServices(builder.Configuration);
 
+// General configuration
+builder.Services.AddAutoMapper(typeof(Program));
+builder.Services.AddScoped<BasketCheckoutConsumer>();
+
+
 builder.Services.AddMassTransit(config => {
     config.AddConsumer<BasketCheckoutConsumer>();
 
@@ -28,16 +33,7 @@ builder.Services.AddMassTransit(config => {
     });
 });
 
-builder.Services.Configure<MassTransitHostOptions>(options =>
-{
-    options.WaitUntilStarted = true;
-    options.StartTimeout = TimeSpan.FromSeconds(30);
-    options.StopTimeout = TimeSpan.FromMinutes(1);
-});
 
-// General configuration
-builder.Services.AddAutoMapper(typeof(Program));
-builder.Services.AddScoped<BasketCheckoutConsumer>();
 
 
 builder.Services.Configure<ApiBehaviorOptions>(options =>

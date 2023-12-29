@@ -15,6 +15,7 @@
         }
 
         public Guid Id { get; private set; }
+
         public DateTime CreationDate { get; private set; }
     }
 }
